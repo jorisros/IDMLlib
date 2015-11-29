@@ -22,12 +22,19 @@ class IDMLfile
    * @return SimpleXMLElement
    * @throws Exception
    */
-  public function getContentFile($file)
+  public function getContentFile($file, $xml = false)
   {
     $content = '';
+
     if(isset($this->structure[$file]))
     {
-      return simplexml_load_string($this->structure[$file]);
+      if($xml)
+      {
+        return simplexml_load_string($this->structure[$file]);
+      }else{
+        return $this->structure[$file];
+      }
+
     }else{
       throw new Exception('Location not found');
     }
