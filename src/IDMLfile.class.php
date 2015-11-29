@@ -3,7 +3,9 @@
 
 class IDMLfile
 {
-  const ACCEPTED_MIME_TYPE = 'application/zip; charset=binary';
+  private $arr_accepted_mime_types = array(
+                  'application/zip; charset=binary',
+                  'application/octet-stream; charset=binary');
 
   private $resource = null;
 
@@ -72,7 +74,7 @@ class IDMLfile
   {
     $mime = $this->getMimeType($location);
 
-    if($mime == IDMLfile::ACCEPTED_MIME_TYPE)
+    if(in_array($mime, $this->arr_accepted_mime_types))
     {
       return true;
     }else{
