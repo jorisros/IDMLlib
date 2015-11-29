@@ -1,6 +1,7 @@
 <?php
 
 require_once 'IDMLfile.class.php';
+require_once 'IDMLcontentColletion.class.php';
 require_once 'IDMLtagCollection.class.php';
 
 class IDMLlib
@@ -26,7 +27,12 @@ class IDMLlib
    */
   public function getContentByTagName($name, $html = true)
   {
+    $arr = array();
+    $stories = $this->file->getContentFile('Stories/Story_udc.xml');
 
+    $collection = new IDMLcontentCollection($this->file, $stories);
+
+    return $collection->getContentByTagName($name);
 
   }
 
@@ -47,7 +53,7 @@ class IDMLlib
   public function getContentTags()
   {
     $arr = array();
-    $content = $this->file->getContentFile('XML/Tags.xml');
+    $content = $this->file->getContentFile('XML/Tags.xml', true);
     $tag = new IDMLtagCollection($this->file, $content);
 
     $tags = $tag->getTags();
