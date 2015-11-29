@@ -62,7 +62,7 @@ class IDMLfile
 
         while ($zip_entry = zip_read($this->resource))
         {
-          $this->structure[zip_entry_name($zip_entry)] = zip_entry_read($zip_entry);
+          $this->structure[zip_entry_name($zip_entry)] = zip_entry_read($zip_entry,10000);
         }
       }
     }else{
