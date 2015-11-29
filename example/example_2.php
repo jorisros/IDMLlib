@@ -41,10 +41,30 @@ $strContent = '';
 /** @var DOMDocument $paragraphStyleRange */
 foreach($paragraphStyleRanges as $paragraphStyleRange)
 {
+	$style = '';
+	$justification = $paragraphStyleRange->attributes->getNamedItem('Justification')->textContent;
+	switch($justification)
+	{
+		case 'CenterAlign':
+			$style .= ' style="text-align: center"';
+			break;
+	}
+	$strContent .= '<p'.$style.'>';
   $characterStyleRanges = $paragraphStyleRange->getElementsByTagName('CharacterStyleRange');
 	/** @var DOMDocument $characterStyleRange */
 	foreach($characterStyleRanges as $characterStyleRange)
 	{
+		$style = '';
+		$fontStyle = $characterStyleRange->attributes->getNamedItem('FontStyle');
+		if(isset($fontStyle))
+		{
+			switch($characterStyleRange->attributes->getNamedItem('FontStyle')->textContent){
+				case 'Bold':
+					$style = ' style="font-weight:bold"';
+					break;
+			}
+		}
+
 		/** @var DOMNodeList $childeren */
 		$childeren = $characterStyleRange->childNodes;
 
@@ -53,7 +73,7 @@ foreach($paragraphStyleRanges as $paragraphStyleRange)
 			switch($child->localName)
 			{
 				case 'Content':
-					$strContent .= '<span>';
+					$strContent .= '<span'.$style.'>';
 					$strContent .= $child->textContent;
 					$strContent .= '</span>';
 					break;
@@ -64,6 +84,7 @@ foreach($paragraphStyleRanges as $paragraphStyleRange)
 
 		}
 	}
+	$strContent .= '</p>';
 }
 
 var_dump($strContent);
