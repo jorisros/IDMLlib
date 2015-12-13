@@ -1,5 +1,17 @@
 <?php
 
+function convertCss($css)
+{
+
+  $results = array();
+  preg_match_all("/([\w-]+)\s*:\s*([^;]+)\s*;?/", $css, $matches, PREG_SET_ORDER);
+  foreach ($matches as $match) {
+    $results[$match[1]] = $match[2];
+  }
+
+  return $results;
+}
+
 $str = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <idPkg:Story xmlns:idPkg="http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging" DOMVersion="8.0">
 	<Story Self="udc" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="$ID/" AppliedNamedGrid="n">
@@ -88,5 +100,80 @@ foreach($paragraphStyleRanges as $paragraphStyleRange)
 	$strContent .= '</p>';
 }
 
-var_dump($strContent);
+$xmlNew = new DOMDocument();
+$xmlNew->loadHTML($strContent);
+
+$xml = new DOMDocument();
+
+$paragraphs = $xmlNew->getElementsByTagName('p');
+
+/** @var DOMDocument $paragraph */
+foreach($paragraphs as $paragraph)
+{
+  $style = $paragraph->attributes->getNamedItem('style')->textContent;
+  var_dump($style);
+  $arrStyle = convertCss($style);
+    var_dump($arrStyle);
+
+  $t = $xml->createElement('ParagraphStyleRange');
+  $t->setAttribute("AppliedParagraphStyle",'ParagraphStyle/$ID/NormalParagraphStyle');
+
+  foreach($arrStyle as $item=>$value)
+  {
+    switch($item)
+    {
+     case 'text-align':
+       $strAttribute = "Justification";
+
+       switch($value){
+         case 'center':
+           $strValue = 'CenterAlign';
+           break;
+       }
+
+       $t->setAttribute($strAttribute, $value);
+       break;
+    }
+  }
+
+
+  $i = 0;
+  /** @var DOMElement $childNode */
+  foreach($paragraph->childNodes as $childNode)
+  {
+    if($childNode->getAttribute('style')){
+      $i++;
+      //  $characterStyle = $xml->createElement('CharacterStyleRange');
+    }
+    $characterStyle[$i] = $xml->createElement('CharacterStyleRange');
+    $characterStyle[$i]->setAttribute('AppliedCharacterStyle','CharacterStyle/$ID/[No character style]');
+
+    $content = $xml->createElement('Content');
+    $content->textContent = $childNode->textContent;
+
+    $characterStyle[$i]->appendChild($content);
+
+    if($childNode->getAttribute('style')){
+       $i++;
+    //  $characterStyle = $xml->createElement('CharacterStyleRange');
+    }
+
+
+  }
+
+  var_dump($characterStyle);
+
+  for($i=0; $i<count($characterStyle);$i++)
+  {
+    $t->appendChild($characterStyle[$i]);
+  }
+
+
+  $xml->appendChild($t);
+}
+
+$xml->formatOutput = true;
+$e=$xml->saveXML();
+
+var_dump($e);
 //var_dump($xmlDoc);
