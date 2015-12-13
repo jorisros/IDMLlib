@@ -38,6 +38,7 @@ $xmlDoc->loadXML($str);
 $paragraphStyleRanges = $xmlDoc->getElementsByTagName('ParagraphStyleRange');
 
 $strContent = '';
+
 /** @var DOMDocument $paragraphStyleRange */
 foreach($paragraphStyleRanges as $paragraphStyleRange)
 {
@@ -51,6 +52,7 @@ foreach($paragraphStyleRanges as $paragraphStyleRange)
 	}
 	$strContent .= '<p'.$style.'>';
   $characterStyleRanges = $paragraphStyleRange->getElementsByTagName('CharacterStyleRange');
+
 	/** @var DOMDocument $characterStyleRange */
 	foreach($characterStyleRanges as $characterStyleRange)
 	{
@@ -81,7 +83,6 @@ foreach($paragraphStyleRanges as $paragraphStyleRange)
 					$strContent .= '<br />';
 					break;
 			}
-
 		}
 	}
 	$strContent .= '</p>';
