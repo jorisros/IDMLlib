@@ -70,6 +70,11 @@ class IDMLfile
     }
   }
 
+    public function getResource()
+    {
+        return $this->resource;
+    }
+
   /**
    * Checks the mimetype of the IDML file
    *
