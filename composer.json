@@ -12,5 +12,8 @@
             "email": "joris.ros@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {"JorisRos\\": "src/"}
+    },
     "require": {}
 }
