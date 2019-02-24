@@ -1,0 +1,16 @@
+{
+    "name": "jorisros/idml-lib",
+    "description": "IDMLlib a php library to read Indesign IDML files",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^8.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joris Ros",
+            "email": "joris.ros@gmail.com"
+        }
+    ],
+    "require": {}
+}
