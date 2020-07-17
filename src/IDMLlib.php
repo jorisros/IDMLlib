@@ -1,7 +1,7 @@
 <?php
 
 require_once 'IDMLfile.class.php';
-require_once 'IDMLcontentColletion.class.php';
+require_once 'IDMLcontentCollection.class.php';
 require_once 'IDMLtagCollection.class.php';
 
 class IDMLlib
