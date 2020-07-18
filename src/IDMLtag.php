@@ -7,19 +7,47 @@ class IDMLtag
     /** @var SimpleXMLElement */
     private $xmlItem;
 
-    protected $Self = '';
-    protected $Name = '';
-    protected $TagColor = '';
+    protected $self = '';
+    protected $name = '';
+    protected $tagColor = '';
 
-    public function __construct($xml)
+    public function __construct(\SimpleXMLElement $xml)
     {
         $this->xmlItem = $xml;
-        $this->Self = (string) $this->xmlItem->attributes()['Self'];
-        $this->Name = (string) $this->xmlItem->attributes()['Name'];
+        $this->self = $this->getAttribute('Self');
+        $this->name = $this->getAttribute('Name');
+        $this->tagColor = $this->getProperty('TagColor');
     }
 
-    public function getName()
+    public function getName(): string
     {
-        return $this->Name;
+        return $this->name;
+    }
+
+    public function getTagColor(): string
+    {
+        return $this->tagColor;
+    }
+
+    /**
+     * Filters out the attribute by name in the tag
+     *
+     * @param string $name
+     * @return string
+     */
+    private function getAttribute(string $name): string
+    {
+        return (string) $this->xmlItem->attributes()[$name];
+    }
+
+    private function getProperty(string $name): string
+    {
+        $properties = $this->xmlItem->children()->children();
+
+        foreach ($properties as $property) {
+            if ($name === $property->getName()) {
+                return (string) $property;
+            }
+        }
     }
 }
