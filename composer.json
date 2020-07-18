@@ -19,5 +19,8 @@
         "psr-4": {
             "JorisRos\\IDMLlib\\": "src/"
         }
+    },
+    "scripts": {
+        "test": "php vendor/bin/phpunit  --bootstrap tests/bootstrap.php tests"
     }
 }
