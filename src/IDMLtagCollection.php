@@ -1,12 +1,15 @@
 <?php
 
+
 namespace JorisRos\IDMLlib;
+
+use SimpleXMLElement;
 
 class IDMLtagCollection
 {
     private $rawXML;
 
-    public function __construct($resource, $content)
+    public function __construct(SimpleXMLElement $content)
     {
         $this->rawXML = $content;
     }

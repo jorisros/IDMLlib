@@ -49,7 +49,7 @@ class IDMLlib
     {
         $arr = array();
         $content = $this->file->getContentFile('XML/Tags.xml', true);
-        $tag = new IDMLtagCollection($this->file, $content);
+        $tag = new IDMLtagCollection($content);
 
         $tags = $tag->getTags();
         /** @var IDMLtag $tag */
