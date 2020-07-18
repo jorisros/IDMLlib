@@ -13,7 +13,7 @@ class IDMLcontentCollection
 
     public function getContentByTagName($name)
     {
-        $domXML = new DOMDocument();
+        $domXML = new \DOMDocument();
         $domXML->loadXML($this->rawXML);
         $elements = $domXML->getElementsByTagName('XMLElement');
 
