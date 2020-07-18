@@ -14,5 +14,10 @@
             "email": "joris.ros@gmail.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "JorisRos\\IDMLlib\\": "src/"
+        }
+    }
 }
