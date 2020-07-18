@@ -1,10 +1,10 @@
 <?php
 
-require_once '../src/IDMLlib.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
-$file = new IDMLfile('../tests/assets/example.idml');
+$file = new \JorisRos\IDMLlib\IDMLfile('../tests/assets/example.idml');
 
-$idml = new IDMLlib($file);
+$idml = new \JorisRos\IDMLlib\IDMLlib($file);
 
 //$tags = $idml->getContentTags();
 //var_dump($tags);

@@ -15,13 +15,13 @@ Go in your browser to http://localhost:3000/example_1.php
 ```
 <?php 
 
-// Read the library
-require_once '../src/IDMLlib.php';
+// Load library
+require_once __DIR__ . '/../vendor/autoload.php';
 
 // Location of IDML file
-$file = new IDMLfile('../tests/assets/example.idml');
+$file = new \JorisRos\IDMLlib\IDMLfile('../tests/assets/example.idml');
 
-$idml = new IDMLlib($file);
+$idml = new \JorisRos\IDMLlib\IDMLli($file);
 
 // Recieve tags from who are defined in Indesign
 $tags = $idml->getContentTags();
@@ -31,5 +31,3 @@ $content = $idml->getContentByTagName('dynamic_content');
 
 echo $content;
 ```
-
-
