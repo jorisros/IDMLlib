@@ -2,8 +2,9 @@
 
 
 use JorisRos\IDMLlib\IDMLtag;
+use PHPUnit\Framework\TestCase;
 
-class IDMLtagTest extends \PHPUnit\Framework\TestCase
+class IDMLtagTest extends TestCase
 {
     private function getTag()
     {
