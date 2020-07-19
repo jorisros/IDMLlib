@@ -1,5 +1,19 @@
 # IDMLlib a php library to read Indesign IDML files
 
+## Installation
+
+####Requirements
+
+- PHP 7.2 or higher
+- SimpleXML extension
+
+####Composer
+Inside your project execute the following command
+```
+composer require jorisros/idml-lib
+``` 
+This got the latest released version and installed it into your vendor directory.
+
 ## TODO
 - Convert HTML to IDML content structure
 
