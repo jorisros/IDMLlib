@@ -31,3 +31,11 @@ $content = $idml->getContentByTagName('dynamic_content');
 
 echo $content;
 ```
+
+## Reference documentation
+##### IDML
+See more documentation: https://www.adobe.com/content/dam/acom/en/devnet/indesign/sdk/cs6/idml/idml-specification.pdf
+
+Or in the ``docs`` directory.
+##### Relax NG Compact Syntax 
+https://relaxng.org/compact-tutorial-20030326.html
