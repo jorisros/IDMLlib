@@ -2,12 +2,12 @@
 
 ## Installation
 
-####Requirements
+#### Requirements
 
 - PHP 7.2 or higher
 - SimpleXML extension
 
-####Composer
+#### Composer
 Inside your project execute the following command
 ```
 composer require jorisros/idml-lib
