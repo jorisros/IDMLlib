@@ -4,7 +4,7 @@
 namespace JorisRos\IDMLlib\Model;
 
 
-class MarginPreference
+class MarginPreference implements ModelInterface
 {
     /** @var string */
     private $columnCount;
@@ -156,5 +156,15 @@ class MarginPreference
     public function setColumnsPositions($columnsPositions)
     {
         $this->columnsPositions = $columnsPositions;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAttributes(): array
+    {
+        return [
+            'columnCount','columnGutter','top','bottom','left','right','columnDirection','columnsPositions'
+        ];
     }
 }
