@@ -158,6 +158,12 @@ class MarginPreference implements ModelInterface
         $this->columnsPositions = $columnsPositions;
     }
 
+    public function getValueOfAttribute(string $attribute): string
+    {
+        $method = 'get' . ucfirst($attribute);
+        return $this->$method();
+    }
+
     /**
      * @return array
      */
