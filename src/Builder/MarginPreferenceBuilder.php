@@ -5,10 +5,8 @@ namespace JorisRos\IDMLlib\Builder;
 
 use JorisRos\IDMLlib\Model\ModelInterface;
 
-class MarginPreferenceBuilder implements BuilderInterface
+class MarginPreferenceBuilder extends AbstractBuilder implements BuilderInterface
 {
-    private $writer;
-    private $model;
 
     public function __construct(ModelInterface $model, \XMLWriter $writer)
     {
@@ -20,6 +18,7 @@ class MarginPreferenceBuilder implements BuilderInterface
     {
         $this->writer->openMemory();
         $this->writer->startElement('MarginPreference');
+        $this->loopAttributes();
         $this->writer->endElement();
     }
 
@@ -29,5 +28,4 @@ class MarginPreferenceBuilder implements BuilderInterface
 
         return $this->writer->outputMemory();
     }
-
 }
