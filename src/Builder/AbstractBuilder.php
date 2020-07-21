@@ -14,6 +14,18 @@ class AbstractBuilder
     /** @var ModelInterface */
     protected $model;
 
+    /**
+     * AbstractBuilder constructor.
+     *
+     * @param ModelInterface $model
+     * @param \XMLWriter $writer
+     */
+    public function __construct(ModelInterface $model, \XMLWriter $writer)
+    {
+        $this->model = $model;
+        $this->writer = $writer;
+    }
+
     protected function loopAttributes(): void
     {
         foreach ($this->model->getAttributes() as $attribute) {
@@ -28,5 +40,10 @@ class AbstractBuilder
         return $this->model->getValueOfAttribute($name);
     }
 
+    public function toString(): string
+    {
+        $this->toXML();
 
+        return $this->writer->outputMemory();
+    }
 }
