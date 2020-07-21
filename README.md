@@ -35,7 +35,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 // Location of IDML file
 $file = new \JorisRos\IDMLlib\IDMLfile('../tests/assets/example.idml');
 
-$idml = new \JorisRos\IDMLlib\IDMLli($file);
+$idml = new \JorisRos\IDMLlib\IDMLlib($file);
 
 // Recieve tags from who are defined in Indesign
 $tags = $idml->getContentTags();
@@ -44,6 +44,14 @@ $tags = $idml->getContentTags();
 $content = $idml->getContentByTagName('dynamic_content');
 
 echo $content;
+```
+
+```
+// Idea for how it should be working in the future, for creating personalized content
+$idml = new \JorisRos\IDMLlib\IDMLlib($file);
+$masterSpread = $idml->getMasterSpread();
+$idml->addPage($masterSpread, ['tag', 'Tag replace content']);
+$idml->saveAs('/tmp/test.idml'); 
 ```
 
 ## Reference documentation
