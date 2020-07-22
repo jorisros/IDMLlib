@@ -14,8 +14,6 @@ composer require jorisros/idml-lib
 ``` 
 This got the latest released version and installed it into your vendor directory.
 
-## TODO
-- Convert HTML to IDML content structure
 
 ## Run example
 ### Show example in browser
