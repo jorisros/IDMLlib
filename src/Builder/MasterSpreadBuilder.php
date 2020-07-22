@@ -19,6 +19,8 @@ class MasterSpreadBuilder extends AbstractBuilder implements BuilderInterface
         $this->writer->startElement('MasterSpread');
         $this->loopAttributes();
         $this->writer->endElement();
+        $this->loopRelations();
+
         $this->writer->endElement();
     }
 }

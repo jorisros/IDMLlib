@@ -3,7 +3,7 @@
 namespace JorisRos\IDMLlib\Model;
 
 
-class Page
+class Page implements ModelInterface
 {
     /** @var string */
     private $self;
@@ -289,4 +289,40 @@ class Page
     {
         $this->useMasterGrid = $useMasterGrid;
     }
+
+    public function getAttributes(): array
+    {
+        return [
+            'Self',
+            'AppliedAlternateLayout',
+            'LayoutRule',
+            'SnapshotBlendingMode',
+            'OptionalPage',
+            'GeometricBounds',
+            'ItemTransform',
+            'Name',
+            'AppliedTrapPreset',
+            'OverrideList',
+            'AppliedMaster',
+            'MasterPageTransform',
+            'TabOrder',
+            'GridStartingPoint',
+            'UseMasterGrid'
+            ];
+    }
+
+    //@TODO move to abstract
+    public function getValueOfAttribute(string $attribute): ?string
+    {
+        var_dump($attribute);
+        $method = 'get' . ucfirst($attribute);
+        return $this->$method();
+    }
+
+    public function getRelations(): array
+    {
+        return [];
+    }
+
+
 }

@@ -21,6 +21,7 @@ class MasterSpreadFactory
         $masterSpread->setPageCount("2");
         $masterSpread->setPrimaryTextFrame("n");
 
+        $masterSpread->addPage(PageFactory::create('udd', 'A', $masterSpread->getSelf(), 'n'));
         return $masterSpread;
     }
 }

@@ -35,6 +35,28 @@ class AbstractBuilder
         }
     }
 
+    protected function loopRelations():void
+    {
+        foreach ($this->model->getRelations() as $attribute => $class) {
+            $builderString = str_replace('Model', 'Builder' , $class) . 'Builder';
+            $methodName = 'get' . ucfirst($attribute);
+
+            $relations = $this->model->$methodName();
+
+            $this->relationBuilder($builderString, $relations);
+        }
+    }
+
+    private function relationBuilder($builderString, array $relations)
+    {
+        foreach ($relations as $relation) {
+            /** @var BuilderInterface $builder */
+            $builder = new $builderString($relation, new \XMLWriter());
+
+            $this->writer->writeRaw($builder->toString());
+        }
+    }
+
     protected function getValueOfProperty($name)
     {
         return $this->model->getValueOfAttribute($name);

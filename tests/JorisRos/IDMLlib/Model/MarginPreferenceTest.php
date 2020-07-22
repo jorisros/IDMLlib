@@ -24,4 +24,19 @@ class MarginPreferenceTest extends TestCase
         $this->assertXmlStringEqualsXmlString($this->createMarginMock(), $builder->toString());
         $this->assertTrue(true);
     }
+
+    public function testA() {
+        $x = new \XMLWriter();
+        $x->openMemory();
+        $x->setIndent(true);
+        $x->startDocument('1.0', 'UTF-8', 'yes');
+        $x->endDocument();
+        $x->startElement('idPkg:MasterSpread');
+        $x->startElement('MasterSpread');
+
+        $x->endElement();
+        $x->endElement();
+
+        var_dump($x->outputMemory());
+    }
 }

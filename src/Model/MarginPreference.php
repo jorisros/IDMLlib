@@ -173,4 +173,9 @@ class MarginPreference implements ModelInterface
             'columnCount','columnGutter','top','bottom','left','right','columnDirection','columnsPositions'
         ];
     }
+
+    public function getRelations(): array
+    {
+        return [];
+    }
 }
