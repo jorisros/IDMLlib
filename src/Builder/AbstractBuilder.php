@@ -26,6 +26,9 @@ class AbstractBuilder
         $this->writer = $writer;
     }
 
+    /**
+     * Loop throug the attributes of the model
+     */
     protected function loopAttributes(): void
     {
         foreach ($this->model->getAttributes() as $attribute) {
@@ -35,21 +38,37 @@ class AbstractBuilder
         }
     }
 
-    protected function loopRelations():void
+    /**
+     * Loop thought the relations of the model, with the possiblity to override the builder instead of the default
+     *
+     * @param null $builderString
+     */
+    protected function loopRelations($builderString = null):void
     {
         foreach ($this->model->getRelations() as $attribute => $class) {
-            $builderString = str_replace('Model', 'Builder' , $class) . 'Builder';
+            if (!$builderString) {
+                $builderString = str_replace('Model', 'Builder' , $class) . 'Builder';
+            }
+
             $methodName = 'get' . ucfirst($attribute);
-
-            $relations = $this->model->$methodName();
-
-            $this->relationBuilder($builderString, $relations);
+            $this->relationBuilder($builderString, $this->model->$methodName());
         }
     }
 
+    /**
+     * Add the child to the parent
+     *
+     * @param $builderString
+     * @param array $relations
+     */
     private function relationBuilder($builderString, array $relations)
     {
         foreach ($relations as $relation) {
+            // If a relation is empty then skip the record, it shouldnt be used as a child
+            if (!$relation) {
+                continue;
+            }
+
             /** @var BuilderInterface $builder */
             $builder = new $builderString($relation, new \XMLWriter());
 
