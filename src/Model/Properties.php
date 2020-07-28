@@ -30,7 +30,7 @@ class Properties implements ModelInterface
         $this->pageColor[] = $pageColor;
     }
 
-    public function getPageColors()
+    public function getPageColor()
     {
         return $this->pageColor;
     }

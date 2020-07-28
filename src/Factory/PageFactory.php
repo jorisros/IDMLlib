@@ -5,6 +5,7 @@ namespace JorisRos\IDMLlib\Factory;
 
 
 use JorisRos\IDMLlib\Model\Page;
+use JorisRos\IDMLlib\Model\Properties;
 
 class PageFactory
 {
@@ -33,6 +34,8 @@ class PageFactory
         $page->setMasterPageTransform("1 0 0 1 0 0");
         $page->setGridStartingPoint("TopOutside");
         $page->setUseMasterGrid("true");
+
+        $page->addProperties(PropertiesFactory::create());
 
         return $page;
     }

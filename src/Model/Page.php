@@ -50,6 +50,9 @@ class Page implements ModelInterface
     /** @var string */
     private $useMasterGrid;
 
+    /** @var Properties  */
+    private $properties = [];
+
     /**
      * @return string
      */
@@ -321,8 +324,18 @@ class Page implements ModelInterface
 
     public function getRelations(): array
     {
-        return [];
+        return [
+            'properties' => Properties::class
+        ];
     }
 
+    public function addProperties(Properties $properties)
+    {
+        $this->properties[] = $properties;
+    }
 
+    public function getProperties(): array
+    {
+        return $this->properties;
+    }
 }
