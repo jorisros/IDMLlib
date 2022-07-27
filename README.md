@@ -54,7 +54,7 @@ $idml->saveAs('/tmp/test.idml');
 
 ## Reference documentation
 ##### IDML
-See more documentation: https://www.adobe.com/content/dam/acom/en/devnet/indesign/sdk/cs6/idml/idml-specification.pdf
+See more documentation: https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.173.8853&rep=rep1&type=pdf
 
 Or in the ``docs`` directory.
 ##### Relax NG Compact Syntax 
