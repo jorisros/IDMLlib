@@ -8,8 +8,6 @@ class IDMLfile
         'application/zip; charset=binary',
         'application/octet-stream; charset=binary');
 
-    private $resource = null;
-
     private $structure = array();
 
     public function __construct($location)
@@ -54,10 +52,11 @@ class IDMLfile
     {
         if (file_exists($location)) {
             if ($this->checkMimeType($location)) {
-                $this->resource = zip_open($location);
+                $zip = new \ZipArchive();
+                $zip->open($location);
 
-                while ($zip_entry = zip_read($this->resource)) {
-                    $this->structure[zip_entry_name($zip_entry)] = zip_entry_read($zip_entry, 10000);
+                for ($i = 0; $i < $zip->numFiles; $i++) {
+                    $this->structure[$zip->getNameIndex($i)] = $zip->getFromIndex($i);
                 }
             }
         } else {
@@ -95,10 +94,5 @@ class IDMLfile
         $type = $finfo->file($location);
 
         return $type;
-    }
-
-    public function __destruct()
-    {
-        zip_close($this->resource);
     }
 }
